@@ -1,0 +1,8 @@
+NORMAL = '\033[0;0m'
+VERD = '\033[0;32m'
+GROC = '\033[0;33m'
+VERMELL = '\033[0;31m'
+CYAN = '\033[1;36m'
+NEGRETA = '\033[1;1m'
+LOGS = '\033[1;35m'
+BANNER = '\033[1;93m'
