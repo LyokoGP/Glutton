@@ -23,7 +23,7 @@ import httplib2
 import base64
 import email
 import re
-import virustotal, sitereview, redirects, safebrowsing
+import virustotal, bluecoat, redirects, safebrowsing
 import colors
 import time
 import banner, regex
@@ -107,7 +107,7 @@ def checkmail():
 		for url in urls:
 			print("")
 			phish_vt = virustotal.analisi_virustotal(url)
-			phish_bc = sitereview.analisi_bluecoat(url)
+			phish_bc = bluecoat.analisi_bluecoat(url)
 			phish_sb = safebrowsing.analisi_google(url)
 			if phish_vt or phish_bc or phish_sb:		
 				# Moure el correu a PHISHING			
