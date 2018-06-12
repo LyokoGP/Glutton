@@ -3,12 +3,12 @@ import requests
 import colors
 
 
-class SiteReview(object):
+class BlueCoat(object):
     def __init__(self):
         self.url_base = "https://sitereview.bluecoat.com/resource/lookup"
         self.headers = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}
 
-    def sitereview(self, url):
+    def bluecoat(self, url):
         payload = {"url": url, "captcha":""}
         
         try:
@@ -34,18 +34,18 @@ class SiteReview(object):
 
 
 def analisi_bluecoat(url):
-    s = SiteReview()
-    response = s.sitereview(url)
+    bc = BlueCoat()
+    response = bc.bluecoat(url)
     if response == False:
         print(colors.CYAN + "BlueCoat: connection error" + colors.NORMAL)
         return False
-    result = s.check_response(response)
+    result = bc.check_response(response)
     if result:
         llista = ["Malicious Outbound Data/Botnets", "Malicious Sources/Malnets", "Phishing", "Scam/Questionable/Illegal", "Suspicious"]
-        if s.category in llista:
+        if bc.category in llista:
             print(colors.VERMELL + "Categoria BlueCoat: " + s.category + colors.NORMAL)
             return True
-        elif s.category == "Uncategorized":
+        elif bc.category == "Uncategorized":
             print(colors.GROC + "URL no categoritzada per BlueCoat" + colors.NORMAL)
             return False
         else:
